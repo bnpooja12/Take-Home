@@ -3,8 +3,12 @@ import pandas as pd
 import plotly.express as px
 import os
 
-st.write("Files in directory:")
-st.write(os.listdir("."))
+st.write("Current working directory:", os.getcwd())
+
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if file.endswith(".csv"):
+            st.write(os.path.join(root, file))
 # --------------------------------------------------
 # PAGE CONFIG
 # --------------------------------------------------
@@ -19,7 +23,7 @@ st.title("🏡 Spacez Review Intelligence Dashboard")
 # LOAD DATA
 # --------------------------------------------------
 df = pd.read_csv(
-    "spacez_reviews_dataset.csv",
+    "Take-Home/spacez_reviews_dataset.csv",
     sep="\t"
 )
 
